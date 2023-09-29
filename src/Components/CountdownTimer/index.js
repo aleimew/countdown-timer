@@ -24,6 +24,10 @@ const CountdownTimer = (props) => {
         setIsPaused(false);
         setMinutes(props.minutes);
         setSeconds(props.seconds);
+
+        if (props.seconds > 59) {
+            calculateSecondsOverload();
+        }
     }
 
     const ChangePauseState = () => {
@@ -88,7 +92,16 @@ const CountdownTimer = (props) => {
     //     console.log("Seconds: " + seconds);
     // }
 
-    //this comment is only here because Alex made a fucky wucky.
+    const calculateSecondsOverload = () => {
+        let minutesOverload = Math.floor(props.seconds / 60);
+        let secondsOverload = props.seconds % 60;
+
+        setMinutes(minutes + minutesOverload);
+        setSeconds(secondsOverload);
+
+        console.log(minutes);
+        console.log(seconds);
+    }
 
     return (
         <div>
