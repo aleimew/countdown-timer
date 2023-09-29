@@ -88,6 +88,8 @@ const CountdownTimer = (props) => {
     //     console.log("Seconds: " + seconds);
     // }
 
+    //this comment is only here because Alex made a fucky wucky.
+
     return (
         <div>
             {isCountingDown ?
