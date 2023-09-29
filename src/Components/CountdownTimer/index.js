@@ -14,12 +14,14 @@ const CountdownTimer = (props) => {
     useEffect(() => {
         if (isCountingDown) {
             setTimeout(() => { CountDownBySeconds() }, 1000);
-            console.log(seconds);
         }
+
+        HasCountdownFinsihed();
     });
 
     const StartCountdown = () => {
         setIsCountingDown(true);
+        setIsPaused(false);
         setMinutes(props.minutes);
         setSeconds(props.seconds);
     }
@@ -53,6 +55,29 @@ const CountdownTimer = (props) => {
         }
     }
 
+    const HasCountdownFinsihed = () => {
+        if (minutes === 0 && seconds === 0) {
+            setIsCountingDown(false);
+        }
+    }
+
+    const PrintProperTimeFormat = () => {
+        if (seconds < 10) {
+            if (minutes < 10) {
+                return ("0" + minutes + ":0" + seconds);
+            }
+            else {
+                return (minutes + ":0" + seconds);
+            }
+        }
+        else {
+            if (minutes < 10) {
+                return ("0" + minutes + ":" + seconds);
+            }
+        }
+        return (minutes + ":" + seconds);
+    }
+
     // const PrintValuesToConsole = () => {
     //     console.log("Values passed down thorugh props:");
     //     console.log("Minutes: " + props.minutes);
@@ -65,20 +90,27 @@ const CountdownTimer = (props) => {
 
     return (
         <div>
-            <div>
-                <button onClick={StartCountdown}>Start</button>
-                <button onClick={ChangePauseState}>Pause/Resume</button>
-                <button onClick={StopCountdown}>Reset</button>
-            </div>
-
             {isCountingDown ?
                 <div>
+                    <div>
+                        {!isPaused ?
+                            <button onClick={ChangePauseState}>Pause</button>
+                            :
+                            <button onClick={ChangePauseState}>Resume</button>
+                        }
+                        <button onClick={StopCountdown}>Reset</button>
+                    </div>
+
                     <h1>
-                        {minutes}:{seconds}
+                        {PrintProperTimeFormat()}
                     </h1>
                 </div>
                 :
                 <div>
+                    <div>
+                        <button onClick={StartCountdown}>Start</button>
+                    </div>
+
                     <h1>
                         00:00
                     </h1>
