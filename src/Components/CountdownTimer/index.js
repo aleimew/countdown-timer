@@ -10,14 +10,20 @@ const CountdownTimer = (props) => {
 
     const [isCountingDown, setIsCountingDown] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
+    const [hasBeenReset, setHasBeenReset] = useState(false);
 
     useEffect(() => {
         if (isCountingDown) {
             setTimeout(() => { CountDownBySeconds() }, 1000);
         }
-
         HasCountdownFinsihed();
     });
+
+    useEffect(() => {
+        if (hasBeenReset) {
+            setTimeout(() => { setHasBeenReset(false) }, 1000);
+        }
+    })
 
     const StartCountdown = () => {
         setIsCountingDown(true);
@@ -45,6 +51,7 @@ const CountdownTimer = (props) => {
         setIsCountingDown(false);
         setMinutes(0);
         setSeconds(0);
+        setHasBeenReset(true);
     }
 
     const CountDownBySeconds = () => {
@@ -93,14 +100,11 @@ const CountdownTimer = (props) => {
     // }
 
     const calculateSecondsOverload = () => {
-        let minutesOverload = Math.floor(props.seconds / 60);
-        let secondsOverload = props.seconds % 60;
+        const minutesOverload = Math.floor(props.seconds / 60);
+        const secondsOverload = props.seconds % 60;
 
-        setMinutes(minutes + minutesOverload);
+        setMinutes(Number(props.minutes) + Number(minutesOverload));
         setSeconds(secondsOverload);
-
-        console.log(minutes);
-        console.log(seconds);
     }
 
     return (
@@ -122,13 +126,21 @@ const CountdownTimer = (props) => {
                 </div>
                 :
                 <div>
-                    <div>
-                        <button onClick={StartCountdown}>Start</button>
-                    </div>
+                    {!hasBeenReset ?
+                        <div>
+                            <div>
+                                <button onClick={StartCountdown}>Start</button>
+                            </div>
 
-                    <h1>
-                        00:00
-                    </h1>
+                            <h1>
+                                00:00
+                            </h1>
+                        </div>
+                        :
+                        <h1>
+                            00:00
+                        </h1>
+                    }
                 </div>
             }
         </div>
