@@ -1,8 +1,11 @@
 import React from 'react';
-import CountdownTimer from '../CountdownTimer';
+import Timer from '../TimerSetter';
 
 const Layout = () => {
 
+    // const PrintChangeToConsole = (e) => {
+    //     console.log('Value changed to ' + e.target.value)
+    // }
 
     return (
         <div className='Layout'>
@@ -13,22 +16,7 @@ const Layout = () => {
             </div>
 
             <div>
-                <input type='number' placeholder='0' />
-                Minutes
-
-                <input type='number' placeholder='0' />
-                Seconds
-
-                <button>Start</button>
-            </div>
-
-            <div>
-                <button>Pause/Resume</button>
-                <button>Reset</button>
-            </div>
-
-            <div>
-                <CountdownTimer />
+                <Timer />
             </div>
         </div>
     )
