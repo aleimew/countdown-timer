@@ -9,9 +9,13 @@ const CountdownTimer = (props) => {
     const [seconds, setSeconds] = useState(0);
 
     const [isCountingDown, setIsCountingDown] = useState(false);
+    const [isPaused, setIsPaused] = useState(false);
 
     useEffect(() => {
-
+        if (isCountingDown) {
+            setTimeout(() => { CountDownBySeconds() }, 1000);
+            console.log(seconds);
+        }
     });
 
     const StartCountdown = () => {
@@ -20,10 +24,33 @@ const CountdownTimer = (props) => {
         setSeconds(props.seconds);
     }
 
+    const ChangePauseState = () => {
+        switch (isPaused) {
+            case false:
+                setIsPaused(true);
+                break;
+            case true:
+                setIsPaused(false);
+                break;
+        }
+    }
+
     const StopCountdown = () => {
         setIsCountingDown(false);
         setMinutes(0);
         setSeconds(0);
+    }
+
+    const CountDownBySeconds = () => {
+        if (!isPaused) {
+            if (seconds === 0) {
+                setSeconds(59);
+                setMinutes(minutes - 1);
+            }
+            else {
+                setSeconds(seconds - 1);
+            }
+        }
     }
 
     // const PrintValuesToConsole = () => {
@@ -40,7 +67,7 @@ const CountdownTimer = (props) => {
         <div>
             <div>
                 <button onClick={StartCountdown}>Start</button>
-                <button>Pause/Resume</button>
+                <button onClick={ChangePauseState}>Pause/Resume</button>
                 <button onClick={StopCountdown}>Reset</button>
             </div>
 
