@@ -10,7 +10,7 @@ const Layout = () => {
     return (
         <div className='Layout'>
             <div>
-                <h1 clasName='Title'>
+                <h1 className='Title'>
                     Timer
                 </h1>
             </div>

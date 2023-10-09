@@ -16,4 +16,28 @@
 .Title {
   margin: 0;
   font-size: 6rem;
+  font-family: 'cinzel', serif;
+  color: lightblue;
+  font-weight: 100;
+  font-style: bold;
+}
+
+.Input_Fields {
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  width: 300px;
+  font-size: 1.5rem;
+  font-family: 'cinzel', serif;
+  font-weight: 300;
+  font-style: bold;
+}
+
+input {
+  border-radius: 2vh;
+  padding: 5px;
+  margin: 10px;
+  width: 150px;
+  font-size: 1.2rem;
+  border-color: darkorange;
 }

@@ -29,20 +29,21 @@ const Timer = () => {
     // }
 
     return (
-        <div>
+        <div className="Input_Fields">
+            Minutes:
             <input
                 type='number'
                 placeholder='0'
                 onChange={SetInitialMinute}
             />
-            Minutes
 
+            Seconds:
             <input
                 type='number'
                 placeholder='0'
                 onChange={SetInitialSecond}
             />
-            Seconds
+
 
             <div>
                 <CountdownTimer
