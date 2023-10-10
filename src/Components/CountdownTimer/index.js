@@ -26,13 +26,15 @@ const CountdownTimer = (props) => {
     })
 
     const StartCountdown = () => {
-        setIsCountingDown(true);
-        setIsPaused(false);
-        setMinutes(props.minutes);
-        setSeconds(props.seconds);
+        if (props.minutes !== 0 || props.seconds !== 0) {
+            setIsCountingDown(true);
+            setIsPaused(false);
+            setMinutes(props.minutes);
+            setSeconds(props.seconds);
 
-        if (props.seconds > 59) {
-            calculateSecondsOverload();
+            if (props.seconds > 59) {
+                calculateSecondsOverload();
+            }
         }
     }
 
@@ -120,7 +122,7 @@ const CountdownTimer = (props) => {
                         <button onClick={StopCountdown}>Reset</button>
                     </div>
 
-                    <h1>
+                    <h1 className='Timer'>
                         {PrintProperTimeFormat()}
                     </h1>
                 </div>
@@ -132,12 +134,12 @@ const CountdownTimer = (props) => {
                                 <button onClick={StartCountdown}>Start</button>
                             </div>
 
-                            <h1>
+                            <h1 className='Timer'>
                                 00:00
                             </h1>
                         </div>
                         :
-                        <h1>
+                        <h1 className='Timer'>
                             00:00
                         </h1>
                     }

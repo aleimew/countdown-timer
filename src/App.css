@@ -3,7 +3,7 @@
 }
 
 .Layout {
-  background-color: #282c34;
+  background-color: grey;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,12 +17,13 @@
   margin: 0;
   font-size: 6rem;
   font-family: 'cinzel', serif;
-  color: lightblue;
+  color: black;
   font-weight: 100;
   font-style: bold;
 }
 
 .Input_Fields {
+  color: black;
   border-radius: 5px;
   padding: 20px;
   margin: 10px;
@@ -39,5 +40,47 @@ input {
   margin: 10px;
   width: 150px;
   font-size: 1.2rem;
-  border-color: darkorange;
+  border-color: black;
+}
+
+button {
+  border-radius: 2vh;
+  padding: 5px;
+  margin: 10px;
+  width: 150px;
+  font-size: 1.2rem;
+  border-color: black;
+}
+
+button:hover {
+  border-color: red;
+  background: lightgrey;
+  scale: 1.2;
+}
+
+button:active {
+  border-color: red;
+  background: lightgrey;
+  scale: 1.1;
+}
+
+h1 {
+  font-size: 5rem;
+  font-family: 'cinzel', serif;
+  font-weight: 300;
+  font-style: bold;
+
+  padding: 20px;
+  margin: 10px;
+  width: 300px;
+
+  color: black;
+}
+
+.Timer {
+  border: 2px solid black;
+  border-color: black;
+  background: lightgrey;
+
+
 }
