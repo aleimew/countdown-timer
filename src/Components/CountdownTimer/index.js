@@ -74,6 +74,30 @@ const CountdownTimer = (props) => {
         }
     }
 
+    const PrintInitalTimerState = () => {
+        return (
+            <div>
+                <div>
+                    {!hasBeenReset ?
+                        <div>
+                            <div>
+                                <button onClick={StartCountdown}>Start</button>
+                            </div>
+
+                            <h1 className='Timer'>
+                                00:00
+                            </h1>
+                        </div>
+                        :
+                        <h1 className='Timer'>
+                            00:00
+                        </h1>
+                    }
+                </div>
+            </div>
+        );
+    }
+
     const PrintProperTimeFormat = () => {
         if (seconds < 10) {
             if (minutes < 10) {
@@ -91,15 +115,18 @@ const CountdownTimer = (props) => {
         return (minutes + ":" + seconds);
     }
 
-    // const PrintValuesToConsole = () => {
-    //     console.log("Values passed down thorugh props:");
-    //     console.log("Minutes: " + props.minutes);
-    //     console.log("Seconds: " + props.seconds);
-
-    //     console.log("Checking to see if values have been passed: ");
-    //     console.log("Minutes: " + minutes);
-    //     console.log("Seconds: " + seconds);
-    // }
+    const PrintAvalibleOptions = () => {
+        return (
+            <div>
+                {!isPaused ?
+                    <button onClick={ChangePauseState}>Pause</button>
+                    :
+                    <button onClick={ChangePauseState}>Resume</button>
+                }
+                <button onClick={StopCountdown}>Reset</button>
+            </div>
+        );
+    }
 
     const calculateSecondsOverload = () => {
         const minutesOverload = Math.floor(props.seconds / 60);
@@ -113,36 +140,14 @@ const CountdownTimer = (props) => {
         <div>
             {isCountingDown ?
                 <div>
-                    <div>
-                        {!isPaused ?
-                            <button onClick={ChangePauseState}>Pause</button>
-                            :
-                            <button onClick={ChangePauseState}>Resume</button>
-                        }
-                        <button onClick={StopCountdown}>Reset</button>
-                    </div>
-
+                    {PrintAvalibleOptions()}
                     <h1 className='Timer'>
                         {PrintProperTimeFormat()}
                     </h1>
                 </div>
                 :
                 <div>
-                    {!hasBeenReset ?
-                        <div>
-                            <div>
-                                <button onClick={StartCountdown}>Start</button>
-                            </div>
-
-                            <h1 className='Timer'>
-                                00:00
-                            </h1>
-                        </div>
-                        :
-                        <h1 className='Timer'>
-                            00:00
-                        </h1>
-                    }
+                    {PrintInitalTimerState()}
                 </div>
             }
         </div>

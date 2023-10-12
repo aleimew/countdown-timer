@@ -22,14 +22,8 @@ const Timer = () => {
         setSecondSetter(e.target.value);
     }
 
-    // const PrintValuesToConsole = () => {
-    //     console.log("Current Values:");
-    //     console.log("Minutes: " + minuteSetter);
-    //     console.log("Seconds: " + secondSetter);
-    // }
-
-    return (
-        <div>
+    const PrintInputFields = () => {
+        return (
             <div className="Input_Fields">
                 Minutes:
                 <input
@@ -45,13 +39,30 @@ const Timer = () => {
                     onChange={SetInitialSecond}
                 />
             </div>
+        );
+    }
 
+    const PrinteTimer = () => {
+        return (
             <div>
                 <CountdownTimer
                     minutes={minuteSetter}
                     seconds={secondSetter}
                 />
             </div>
+        );
+    }
+
+    // const PrintValuesToConsole = () => {
+    //     console.log("Current Values:");
+    //     console.log("Minutes: " + minuteSetter);
+    //     console.log("Seconds: " + secondSetter);
+    // }
+
+    return (
+        <div>
+            {PrintInputFields()}
+            {PrinteTimer()}
         </div>
     )
 }
